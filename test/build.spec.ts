@@ -1,8 +1,8 @@
-import { sass } from '../dist';
-import { PluginCtx } from '../dist/declarations';
+import { sass } from '../src';
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { PluginCtx } from '@stencil/core/internal';
 
 
 describe('test build', () => {
@@ -26,7 +26,7 @@ describe('test build', () => {
       } as any,
       diagnostics: []
     };
-  })
+  });
 
   it('transform', async () => {
     const filePath = path.join(__dirname, 'fixtures', 'test-a.scss');
@@ -57,32 +57,27 @@ describe('test build', () => {
     expect(context.diagnostics).toHaveLength(1);
     expect(context.diagnostics[0].level).toEqual('error');
     expect(context.diagnostics[0].language).toEqual('scss');
-    expect(context.diagnostics[0].lineNumber).toEqual(2);
-    expect(context.diagnostics[0].columnNumber).toEqual(23);
-    expect(context.diagnostics[0].lines.length).toEqual(3);
+    expect(context.diagnostics[0].lineNumber).toEqual(1);
+    expect(context.diagnostics[0].columnNumber).toEqual(17);
+    expect(context.diagnostics[0].lines.length).toEqual(2);
 
     expect(context.diagnostics[0].lines[0].lineIndex).toEqual(0);
     expect(context.diagnostics[0].lines[0].lineNumber).toEqual(1);
-    expect(context.diagnostics[0].lines[0].errorCharStart).toEqual(-1);
-    expect(context.diagnostics[0].lines[0].errorLength).toEqual(-1);
+    expect(context.diagnostics[0].lines[0].errorCharStart).toEqual(16);
+    expect(context.diagnostics[0].lines[0].errorLength).toEqual(1);
     expect(context.diagnostics[0].lines[0].text).toEqual('body{color:blue}');
 
     expect(context.diagnostics[0].lines[1].lineIndex).toEqual(1);
     expect(context.diagnostics[0].lines[1].lineNumber).toEqual(2);
-    expect(context.diagnostics[0].lines[1].errorCharStart).toEqual(22);
-    expect(context.diagnostics[0].lines[1].errorLength).toEqual(1);
-    expect(context.diagnostics[0].lines[1].text).toEqual('   hello i am an error!');
+    expect(context.diagnostics[0].lines[1].errorCharStart).toEqual(-1);
+    expect(context.diagnostics[0].lines[1].errorLength).toEqual(-1);
+    expect(context.diagnostics[0].lines[1].text).toEqual('');
 
-    expect(context.diagnostics[0].lines[2].lineIndex).toEqual(2);
-    expect(context.diagnostics[0].lines[2].lineNumber).toEqual(3);
-    expect(context.diagnostics[0].lines[2].errorCharStart).toEqual(-1);
-    expect(context.diagnostics[0].lines[2].errorLength).toEqual(-1);
-    expect(context.diagnostics[0].lines[2].text).toEqual('  div{color:green}');
   });
 
   it('name', async () => {
     const s = sass();
-    expect(s.name).toBe('sass');
+    expect(s.name).toBe('node-sass');
   });
 
 });

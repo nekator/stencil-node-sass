@@ -1,12 +1,20 @@
-# @stencil/sass
+# stencil-node-sass
 
-This package is used to easily precompile Sass files within Stencil components. Internally this plugin uses a pure JavaScript implementation of [Sass](https://www.npmjs.com/package/sass). Please see the
-[Behavioral Differences from Ruby Sass](https://www.npmjs.com/package/sass#behavioral-differences-from-ruby-sass) doc if issues have surfaced since upgrading from previous versions which used used the `node-sass` implementation.
+**This stencil plugin will be published to npmjs soon. Curently it is not possible to install this module!**
+
+This package is used to easily precompile Sass files within Stencil components. Internally this plugin uses [node-sass](https://www.npmjs.com/package/node-sass).
+
+This package is a fork of [@stencil/sass](https://github.com/ionic-team/stencil-sass) to work around problems with the bundled [sass](https://www.npmjs.com/package/sass) implementation
 
 First, npm install within the project:
 
 ```
-npm install @stencil/sass --save-dev
+npm install stencil-node-sass --save-dev
+```
+
+Or with yarn:
+```
+yarn add stencil-node-sass --dev
 ```
 
 Next, within the project's stencil config, import the plugin and add it to the config's `plugins` property:
@@ -14,7 +22,7 @@ Next, within the project's stencil config, import the plugin and add it to the c
 #### stencil.config.ts
 ```ts
 import { Config } from '@stencil/core';
-import { sass } from '@stencil/sass';
+import { sass } from 'stencil-node-sass';
 
 export const config: Config = {
   plugins: [
@@ -53,13 +61,14 @@ Note that each of these files are always added to each component, so in most cas
 
 ## Related
 
-* [sass](https://www.npmjs.com/package/sass)
+* [node-sass](https://www.npmjs.com/package/node-sass)
 * [Stencil](https://stenciljs.com/)
+* [@stencil/sass](https://www.npmjs.com/package/@stencil/sass)
 * [Stencil Worldwide Slack](https://stencil-worldwide.slack.com)
 * [Ionic Components](https://www.npmjs.com/package/@ionic/core)
 * [Ionicons](http://ionicons.com/)
 
+## Credits
 
-## Contributing
-
-Please see our [Contributor Code of Conduct](https://github.com/ionic-team/ionic/blob/master/CODE_OF_CONDUCT.md) for information on our rules of conduct.
+The heavy lifting was done by the [ionic-team](https://github.com/ionic-team) i just changed the imports to node-sass.
+So all credits belongs to the ionic-team.

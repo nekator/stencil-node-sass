@@ -1,6 +1,3 @@
-
-export * from '@stencil/core/internal';
-
 export interface PluginOptions {
   /**
    * Path to a file to compile.

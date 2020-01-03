@@ -1,5 +1,5 @@
 {
-  "name": "@stencil/sass",
+  "name": "stencil-node-sass",
   "version": "1.1.1",
   "license": "MIT",
   "main": "dist/index.js",
@@ -10,9 +10,8 @@
   ],
   "scripts": {
     "prebuild": "rimraf ./dist && npm run lint",
-    "build": "tsc && npm run rollup && npm run test",
+    "build": "tsc  && npm run test",
     "watch": "tsc --watch",
-    "rollup": "rollup -c rollup.config.js",
     "version": "npm run build",
     "release": "np",
     "lint": "tslint --project tsconfig.json",
@@ -21,19 +20,18 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "@stencil/core": "^1.0.2"
+    "@stencil/core": "^1.0.2",
+    "node-sass": "4.13.0"
   },
   "devDependencies": {
+    "node-sass": "4.13.0",
+    "@types/node-sass" : "^4.11.0",
     "@stencil/core": "1.0.2",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.12",
-    "@types/sass": "1.16.0",
     "jest": "24.9.0",
     "np": "5.1.1",
     "rimraf": "^3.0.0",
-    "rollup": "^1.26.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "sass": "1.23.1",
     "terser": "^4.3.8",
     "ts-jest": "^24.1.0",
     "tslint": "5.20.0",
@@ -42,17 +40,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ionic-team/stencil-sass.git"
+    "url": "git+https://github.com/nekator/stencil-node-sass.git"
   },
-  "author": "Ionic Team",
-  "homepage": "https://stenciljs.com/",
-  "description": "The Stencil Sass Plugin",
+  "author": "Heiko Does",
+  "homepage": "https://github.com/nekator",
+  "description": "The Stencil Sass Plugin based on node-sass",
   "keywords": [
     "stencil",
-    "sass"
+    "sass",
+    "node-sass"
   ],
   "jest": {
     "preset": "ts-jest",
-    "testURL": "http://localhost"
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsConfig.test.json"
+      }
+    }
   }
 }

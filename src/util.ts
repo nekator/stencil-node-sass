@@ -1,5 +1,6 @@
-import * as d from './declarations';
 import * as path from 'path';
+import { PluginOptions } from './declarations';
+import { PluginCtx } from '@stencil/core/internal';
 
 
 export function usePlugin(fileName: string) {
@@ -9,7 +10,7 @@ export function usePlugin(fileName: string) {
   return true;
 }
 
-export function getRenderOptions(opts: d.PluginOptions, sourceText: string, fileName: string, context: d.PluginCtx) {
+export function getRenderOptions(opts: PluginOptions, sourceText: string, fileName: string, context: PluginCtx) {
   // create a copy of the original sass config so we don't change it
   const renderOpts = Object.assign({}, opts);
 

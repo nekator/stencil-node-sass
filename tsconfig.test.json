@@ -9,7 +9,7 @@
       "dom"
     ],
     "esModuleInterop": true,
-    "module": "es2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": true,

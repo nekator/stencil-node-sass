@@ -1,12 +1,13 @@
-import * as d from '../src/declarations';
 import * as util from '../src/util';
+import { PluginCtx } from '@stencil/core/internal';
+import { PluginOptions } from '../src/declarations';
 
 
 describe('getRenderOptions', () => {
 
   const sourceText = 'body { color: blue; }';
   const fileName = '/some/path/file-name.scss';
-  const context: d.PluginCtx = {
+  const context: PluginCtx = {
     config: {
       rootDir: '/Users/my/app/',
       srcDir: '/Users/my/app/src/',
@@ -17,7 +18,7 @@ describe('getRenderOptions', () => {
 
 
   it('should remove "file" config', () => {
-    const input: d.PluginOptions = {
+    const input: PluginOptions = {
       file: '/my/global/variables.scss'
     };
     const output = util.getRenderOptions(input, sourceText, fileName, context);
@@ -26,7 +27,7 @@ describe('getRenderOptions', () => {
   });
 
   it('should inject global sass array and not change input options or include globals in output opts', () => {
-    const input: d.PluginOptions = {
+    const input: PluginOptions = {
       injectGlobalPaths: ['/my/global/variables.scss']
     };
     const output = util.getRenderOptions(input, sourceText, fileName, context);
@@ -37,7 +38,7 @@ describe('getRenderOptions', () => {
   });
 
   it('should add dirname of filename to existing includePaths array and not change input options', () => {
-    const input: d.PluginOptions = {
+    const input: PluginOptions = {
       includePaths: ['/some/other/include/path']
     };
     const output = util.getRenderOptions(input, sourceText, fileName, context);
@@ -49,7 +50,7 @@ describe('getRenderOptions', () => {
   });
 
   it('should add dirname of filename to includePaths and not change input options', () => {
-    const input: d.PluginOptions = {};
+    const input: PluginOptions = {};
     const output = util.getRenderOptions(input, sourceText, fileName, context);
     expect(output.includePaths).toHaveLength(1);
     expect(output.includePaths[0]).toBe('/some/path');
@@ -57,7 +58,7 @@ describe('getRenderOptions', () => {
   });
 
   it('should set data', () => {
-    const input: d.PluginOptions = {};
+    const input: PluginOptions = {};
     const output = util.getRenderOptions(input, sourceText, fileName, context);
     expect(output.data).toBe(sourceText);
   });

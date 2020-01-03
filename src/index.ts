@@ -1,15 +1,15 @@
-import { render } from 'sass';
-import * as d from './declarations';
 import { loadDiagnostic } from './diagnostics';
 import { createResultsId, getRenderOptions, usePlugin } from './util';
+import { Diagnostic, Plugin, PluginCtx, PluginTransformResults } from '@stencil/core/internal';
+import { PluginOptions } from './declarations';
+import { render } from 'node-sass';
 
-
-export function sass(opts: d.PluginOptions = {}): d.Plugin {
+export function sass(opts: PluginOptions = {}): Plugin {
 
   return {
-    name: 'sass',
+    name: 'node-sass',
     pluginType: 'css',
-    transform(sourceText, fileName, context) {
+    transform(sourceText: string, fileName: string, context: PluginCtx) {
       if (!usePlugin(fileName)) {
         return null;
       }
@@ -18,7 +18,7 @@ export function sass(opts: d.PluginOptions = {}): d.Plugin {
       }
       const renderOpts = getRenderOptions(opts, sourceText, fileName, context);
 
-      const results: d.PluginTransformResults = {
+      const results: PluginTransformResults = {
         id: createResultsId(fileName),
       };
 
@@ -27,7 +27,7 @@ export function sass(opts: d.PluginOptions = {}): d.Plugin {
         return Promise.resolve(results);
       }
 
-      return new Promise<d.PluginTransformResults>(resolve => {
+      return new Promise<PluginTransformResults>(resolve => {
         try {
           render(renderOpts, (err, sassResult) => {
             if (err) {
@@ -49,7 +49,7 @@ export function sass(opts: d.PluginOptions = {}): d.Plugin {
 
         } catch (e) {
           // who knows, just good to play it safe here
-          const diagnostic: d.Diagnostic = {
+          const diagnostic: Diagnostic = {
             level: 'error',
             type: 'css',
             language: 'scss',

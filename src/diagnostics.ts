@@ -1,13 +1,13 @@
-import { SassException } from 'sass';
-import * as d from './declarations';
+import { SassError } from 'node-sass';
+import { Diagnostic, PluginCtx, PrintLine } from '@stencil/core/internal';
 
 
-export function loadDiagnostic(context: d.PluginCtx, sassError: SassException, filePath: string) {
+export function loadDiagnostic(context: PluginCtx, sassError: SassError, filePath: string) {
   if (sassError == null || context == null) {
     return null;
   }
 
-  const diagnostic: d.Diagnostic = {
+  const diagnostic: Diagnostic = {
     level: 'error',
     type: 'css',
     language: 'scss',
@@ -36,7 +36,7 @@ export function loadDiagnostic(context: d.PluginCtx, sassError: SassException, f
 
         const srcLines = sourceText.split(/\n/);
 
-        const errorLine: d.PrintLine = {
+        const errorLine: PrintLine = {
           lineIndex: errorLineIndex,
           lineNumber: errorLineNumber,
           text: srcLines[errorLineIndex],
@@ -66,7 +66,7 @@ export function loadDiagnostic(context: d.PluginCtx, sassError: SassException, f
         diagnostic.lines.push(errorLine);
 
         if (errorLine.lineIndex > 0) {
-          const previousLine: d.PrintLine = {
+          const previousLine: PrintLine = {
             lineIndex: errorLine.lineIndex - 1,
             lineNumber: errorLine.lineNumber - 1,
             text: srcLines[errorLine.lineIndex - 1],
@@ -78,7 +78,7 @@ export function loadDiagnostic(context: d.PluginCtx, sassError: SassException, f
         }
 
         if (errorLine.lineIndex + 1 < srcLines.length) {
-          const nextLine: d.PrintLine = {
+          const nextLine: PrintLine = {
             lineIndex: errorLine.lineIndex + 1,
             lineNumber: errorLine.lineNumber + 1,
             text: srcLines[errorLine.lineIndex + 1],
