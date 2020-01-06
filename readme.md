@@ -1,6 +1,5 @@
 # stencil-node-sass
 
-**This stencil plugin will be published to npmjs soon. Curently it is not possible to install this module!**
 
 This package is used to easily precompile Sass files within Stencil components. Internally this plugin uses [node-sass](https://www.npmjs.com/package/node-sass).
 
@@ -9,12 +8,12 @@ This package is a fork of [@stencil/sass](https://github.com/ionic-team/stencil-
 First, npm install within the project:
 
 ```
-npm install stencil-node-sass --save-dev
+npm install stencil-node-sass node-sass --save-dev
 ```
 
 Or with yarn:
 ```
-yarn add stencil-node-sass --dev
+yarn add stencil-node-sass node-sass --dev
 ```
 
 Next, within the project's stencil config, import the plugin and add it to the config's `plugins` property:
