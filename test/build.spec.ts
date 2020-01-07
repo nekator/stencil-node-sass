@@ -77,7 +77,7 @@ describe('test build', () => {
 
   it('name', async () => {
     const s = sass();
-    expect(s.name).toBe('node-sass');
+    expect(s.name).toBe('sass');
   });
 
 });

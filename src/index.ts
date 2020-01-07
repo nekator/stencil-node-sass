@@ -7,7 +7,7 @@ import { render } from 'node-sass';
 export function sass(opts: PluginOptions = {}): Plugin {
 
   return {
-    name: 'node-sass',
+    name: 'sass',
     pluginType: 'css',
     transform(sourceText: string, fileName: string, context: PluginCtx) {
       if (!usePlugin(fileName)) {
