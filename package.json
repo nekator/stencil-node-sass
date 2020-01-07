@@ -3,16 +3,18 @@
   "version": "1.1.1",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist/"
   ],
   "scripts": {
     "prebuild": "rimraf ./dist && npm run lint",
-    "build": "tsc  && npm run test",
+    "build": "tsc && npm run rollup  && npm run test",
     "watch": "tsc --watch",
     "version": "npm run build",
     "release": "np",
+    "rollup": "rollup -c rollup.config.js",
     "lint": "tslint --project tsconfig.json",
     "test": "jest",
     "test.watch": "jest --watch"
@@ -23,14 +25,16 @@
     "node-sass": "4.13.0"
   },
   "devDependencies": {
-    "node-sass": "4.13.0",
-    "@types/node-sass" : "^4.11.0",
     "@stencil/core": "1.0.2",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.12",
+    "@types/node-sass": "^4.11.0",
     "jest": "24.9.0",
+    "node-sass": "4.13.0",
     "np": "5.1.1",
     "rimraf": "^3.0.0",
+    "rollup": "^1.26.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
     "terser": "^4.3.8",
     "ts-jest": "^24.1.0",
     "tslint": "5.20.0",
