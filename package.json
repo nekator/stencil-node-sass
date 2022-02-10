@@ -22,7 +22,7 @@
   "dependencies": {},
   "peerDependencies": {
     "@stencil/core": "^1.0.2",
-    "node-sass": "4.13.0"
+    "node-sass": "7.0.0"
   },
   "devDependencies": {
     "@stencil/core": "1.0.2",
@@ -30,7 +30,7 @@
     "@types/node": "12.7.12",
     "@types/node-sass": "^4.11.0",
     "jest": "24.9.0",
-    "node-sass": "4.13.0",
+    "node-sass": "7.0.0",
     "np": "5.1.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.26.0",
